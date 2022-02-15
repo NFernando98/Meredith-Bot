@@ -8,16 +8,17 @@ export default async function (message, args){
     args = message.content.slice(prefix.length).split(/ +/);
 
 
-
     // Get current user's voice channel
     // If the user is not in voice channel
     const voiceChannel = message.member.voice.channel;
+    console.log(voiceChannel);
     if(!voiceChannel) return message.channel.send('You need to be in a voice channel');
 
-    // Check for having right permissions
+    // Check for having right permissions\
     const permissions = voiceChannel.permissionsFor(message.client.user);
     if(!permissions.has('CONNECT')) return message.channel.send('You do not have the correct permissions');
     if(!permissions.has('SPEAK')) return message.channel.send('You do not have the correct permissions');
+
 
     // Check whether they actually send an argument, not only !play command
     if(!args.length) return message.send('You need to send an argument buddy!');
